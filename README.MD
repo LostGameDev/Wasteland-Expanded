@@ -3,9 +3,9 @@ The wasteland mod with extra content and bug fixes
 
 # Downloads
 Downloads for the mod can be found: 
-Curse: Soon(tm)
-Modrinth: Soon(tm)
-Releases page: https://github.com/LostGameDev/Wasteland-Expanded/releases
+* Curse: Soon(tm)
+* Modrinth: Soon(tm)
+* Releases page: https://github.com/LostGameDev/Wasteland-Expanded/releases
 
 # TODO
 * Fix shouldSpawnOres option
