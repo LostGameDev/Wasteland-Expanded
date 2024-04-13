@@ -1,4 +1,4 @@
-The mod was originally made by Silver_Weasek, updated by The_Holy_Frenchman(Frog), MrSpring and GiMoe, then by 115kino(Kino) And now by Hennamann. You are free to use this mod in any modpack that you want. All I require is a link to this post. 
+The mod was originally made by Silver_Weasek, updated by The_Holy_Frenchman(Frog), MrSpring and GiMoe, then by 115kino(Kino) then by Hennamann, and then updated and expanded by LostGameDev. You are free to use this mod in any modpack that you want. All I require is a link to this post. 
 # 0. TERMS AND CONDITIONS 
 USED TERMS MOD - modification, plugin, a piece of software that interfaces with the Minecraft client to extend, add, change or remove original capabilities. MOJANG - Mojang AB
 OWNER - , Original author(s) of the MOD. Under the copyright terms accepted when purchasing Minecraft: [https://account.mojang.com/documents/minecraft_eula](https://account.mojang.com/documents/minecraft_eula) the OWNER has full rights over their MOD despite use of MOJANG code.
