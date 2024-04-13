@@ -1,13 +1,13 @@
 [
 {
   "modid": "wastelands",
-  "name": "Wasteland Mod",
-  "description": "The classic Wasteland Mod, reborn for MC 1.12",
-  "version": "1.2.2",
+  "name": "Wasteland Expanded",
+  "description": "The Wasteland Mod Expanded with extra content",
+  "version": "1.0.0",
   "mcversion": "1.12.2",
   "url": "",
   "updateUrl": "",
-  "authorList": ["Silver_Weasek, The_Holy_Frog, MrSpring, GiMoe, 115kino, Hennamann"],
+  "authorList": ["Silver_Weasek, The_Holy_Frog, MrSpring, GiMoe, 115kino, Hennamann, LostGameDev"],
   "credits": "",
   "logoFile": "",
   "screenshots": [],
