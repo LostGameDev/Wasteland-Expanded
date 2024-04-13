@@ -8,7 +8,6 @@ Downloads for the mod can be found:
 * [Releases page](https://github.com/LostGameDev/Wasteland-Expanded/releases)
 
 # TODO
-* Add city ruins! (Lost cities compat?)
 * Add radioactive wastelands biome
 
 # License
