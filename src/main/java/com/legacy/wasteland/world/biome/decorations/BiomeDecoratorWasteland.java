@@ -17,6 +17,9 @@ import com.legacy.wasteland.world.biome.decorations.gen.ruins.WorldGenSurvivalTe
 import com.legacy.wasteland.world.biome.decorations.gen.ruins.WorldGenTreeHouse;
 import java.util.Random;
 import net.minecraft.block.BlockBed;
+import net.minecraft.block.BlockDoor;
+import net.minecraft.block.BlockTrapDoor;
+import net.minecraft.block.BlockPressurePlate;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.BlockStone;
@@ -248,25 +251,25 @@ public class BiomeDecoratorWasteland extends BiomeDecorator {
       System.out.println(pos.toString());
 
       int i;
-      for(i = 0; i < 5; ++i) {
-         for(int currentPos = 0; currentPos < 7; ++currentPos) {
-            for(int i1 = 0; i1 < 7; ++i1) {
-               if(count == 61) {
+      for (i = 0; i < 5; ++i) {
+         for (int currentPos = 0; currentPos < 7; ++currentPos) {
+            for (int i1 = 0; i1 < 7; ++i1) {
+               if (count == 61) {
                   world.setBlockState(pos.add(i1, i, currentPos), Blocks.CHEST.getDefaultState().withProperty(BlockChest.FACING, EnumFacing.SOUTH));
-                  TileEntityChest var11 = (TileEntityChest)world.getTileEntity(pos.add(i1, i, currentPos));
+                  TileEntityChest var11 = (TileEntityChest) world.getTileEntity(pos.add(i1, i, currentPos));
 
-                  for(int treasureSize = 0; treasureSize < 3 + random.nextInt(4); ++treasureSize) {
+                  for (int treasureSize = 0; treasureSize < 3 + random.nextInt(4); ++treasureSize) {
                      var11.setInventorySlotContents(random.nextInt(var11.getSizeInventory()), WastelandConfig.loot.getLoot(WastelandConfig.loot.startLoot)[random.nextInt(WastelandConfig.loot.startLoot.length)]);
                   }
-               } else if(count != 78 && count != 85) {
-                  if(count == 136) {
+               } else if (count != 78 && count != 85) {
+                  if (count == 136) {
                      world.setBlockState(pos.add(i1, i, currentPos), Blocks.LEVER.getDefaultState());
-                  } else if(count == 143) {
+                  } else if (count == 143) {
                      world.setBlockState(pos.add(i1, i, currentPos), Blocks.REDSTONE_LAMP.getDefaultState());
-                  } else if(i != 4 && i != 0 && currentPos != 0 && currentPos != 6 && i1 != 0 && i1 != 6) {
+                  } else if (i != 4 && i != 0 && currentPos != 0 && currentPos != 6 && i1 != 0 && i1 != 6) {
                      world.setBlockToAir(pos.add(i1, i, currentPos));
                   } else {
-                     world.setBlockState(pos.add(i1, i, currentPos), random.nextInt(4) == 0?Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, net.minecraft.block.BlockStoneBrick.EnumType.MOSSY):Blocks.STONEBRICK.getDefaultState());
+                     world.setBlockState(pos.add(i1, i, currentPos), random.nextInt(4) == 0 ? Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.MOSSY) : random.nextInt(8) == 0 ? Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, BlockStoneBrick.EnumType.CRACKED) : Blocks.STONEBRICK.getDefaultState());
                   }
                } else if (WastelandConfig.worldgen.shouldSpawnBunkerBed && count == 78) {
                   BlockPos bedPos = pos.add(i1, i, currentPos + 1);
@@ -281,13 +284,18 @@ public class BiomeDecoratorWasteland extends BiomeDecorator {
          }
       }
 
-      world.setBlockState(pos.add(2, 1, 0), Blocks.AIR.getDefaultState());
-      world.setBlockState(pos.add(2, 2, 0), Blocks.AIR.getDefaultState());
+      world.setBlockState(pos.add(2, 1, 1), Blocks.WOODEN_PRESSURE_PLATE.getDefaultState());
+      world.setBlockState(pos.add(2, 1, 0), Blocks.OAK_DOOR.getDefaultState().withProperty(BlockDoor.FACING, EnumFacing.NORTH).withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.LOWER));
+      world.setBlockState(pos.add(2, 2, 0), Blocks.OAK_DOOR.getDefaultState().withProperty(BlockDoor.FACING, EnumFacing.NORTH).withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.UPPER));
 
-      for(i = 1; i < 255; ++i) {
+      for (i = 1; i < 255; ++i) {
          BlockPos var10 = pos.add(2, i, -1);
-         if(!world.isAirBlock(var10)) {
+         BlockPos var11 = pos.add(2, i + 1, -1);
+         if (!world.isAirBlock(var10)) {
             world.setBlockState(var10, Blocks.LADDER.getDefaultState().withProperty(BlockStairs.FACING, EnumFacing.SOUTH));
+            if (world.isAirBlock(var11)){
+               world.setBlockState(var10, Blocks.TRAPDOOR.getDefaultState().withProperty(BlockTrapDoor.FACING, EnumFacing.SOUTH).withProperty(BlockTrapDoor.HALF, BlockTrapDoor.DoorHalf.TOP).withProperty(BlockTrapDoor.OPEN, false));
+            }
          }
       }
 

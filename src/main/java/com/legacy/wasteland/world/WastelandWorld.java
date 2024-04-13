@@ -18,17 +18,17 @@ public class WastelandWorld {
     public static Biome apocalypse_desert;
 
     public static void init() {
-        apocalypse = register("Wasteland", new BiomeGenApocalypse(new Biome.BiomeProperties("Wasteland").setTemperature(-0.5F).setBaseHeight(0.1F).setHeightVariation(0.05F).setWaterColor(14728553).setRainfall(0.5F).setSnowEnabled()));
+        apocalypse = register("Wasteland", new BiomeGenApocalypse(new Biome.BiomeProperties("Wasteland").setTemperature(0.5F).setBaseHeight(0.1F).setHeightVariation(0.05F).setWaterColor(14728553).setRainfall(0.5F)));
         if (WastelandConfig.biomes.wastelandMountainsEnabled) {
-            apocalypse_mountains = register("Wasteland Mountains", new BiomeGenMountains(new Biome.BiomeProperties("Wasteland Mountains").setTemperature(-0.5F).setBaseHeight(0.09F).setHeightVariation(0.03F).setWaterColor(10255379).setRainfall(0.5F).setSnowEnabled()));
+            apocalypse_mountains = register("Wasteland Mountains", new BiomeGenMountains(new Biome.BiomeProperties("Wasteland Mountains").setTemperature(0.5F).setBaseHeight(0.2F).setHeightVariation(0.8F).setWaterColor(10255379).setRainfall(0.5F)));
         }
         if (WastelandConfig.biomes.wastelandForestEnabled) {
-            apocalypse_forest = register("Wasteland Forest", new BiomeGenForest(new Biome.BiomeProperties("Wasteland Forest").setTemperature(-0.5F).setBaseHeight(0.1F).setHeightVariation(0.05F).setWaterColor(10793807).setRainfall(0.5F).setSnowEnabled()));
+            apocalypse_forest = register("Wasteland Forest", new BiomeGenForest(new Biome.BiomeProperties("Wasteland Forest").setTemperature(0.5F).setBaseHeight(0.1F).setHeightVariation(0.05F).setWaterColor(10793807).setRainfall(0.5F)));
         }
         if (WastelandConfig.biomes.wastelandCityEnabled) {
-            apocalypse_city = register("Wasteland City", new BiomeGenCity(new Biome.BiomeProperties("Wasteland City").setTemperature(-0.5F).setBaseHeight(0.09F).setHeightVariation(0.05F).setWaterColor(9410739).setRainfall(0.5F).setSnowEnabled()));
+            apocalypse_city = register("Wasteland City", new BiomeGenCity(new Biome.BiomeProperties("Wasteland City").setTemperature(0.5F).setBaseHeight(0.09F).setHeightVariation(0.05F).setWaterColor(9410739).setRainfall(0.5F)));
         }
-        apocalypse_desert = register("Wasteland Desert", new BiomeGenDesert(new Biome.BiomeProperties("Wasteland Desert").setTemperature(-0.5F).setBaseHeight(0.09F).setHeightVariation(0.05F).setWaterColor(9410739).setRainfall(0.5F).setSnowEnabled()));
+        apocalypse_desert = register("Wasteland Desert", new BiomeGenDesert(new Biome.BiomeProperties("Wasteland Desert").setTemperature(0.5F).setBaseHeight(0.09F).setHeightVariation(0.05F).setWaterColor(9410739).setRainDisabled()));
         worldtype_wasteland = new WorldTypeWasteland();
     }
 

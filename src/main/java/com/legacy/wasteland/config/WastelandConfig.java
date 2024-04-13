@@ -45,7 +45,7 @@ public class WastelandConfig {
     public int mountainRuinRarity = 50;
 
     @Config.Comment("Oasis rarity")
-    public int oasisRarity = 50;
+    public int oasisRarity = 1000;
 
     @Config.Comment("Wasteland Top Block")
     public String surfaceBlock = "minecraft:dirt";
