@@ -307,9 +307,9 @@ public class WorldGenCivilizationRuins extends WorldGenerator {
                 }
             }
 
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     }
 }

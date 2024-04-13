@@ -268,9 +268,12 @@ public class BiomeDecoratorWasteland extends BiomeDecorator {
                   } else {
                      world.setBlockState(pos.add(i1, i, currentPos), random.nextInt(4) == 0?Blocks.STONEBRICK.getDefaultState().withProperty(BlockStoneBrick.VARIANT, net.minecraft.block.BlockStoneBrick.EnumType.MOSSY):Blocks.STONEBRICK.getDefaultState());
                   }
-               } else if (WastelandConfig.worldgen.shouldSpawnBunkerBed) {
-                  EnumPartType side = count == 85?EnumPartType.HEAD:EnumPartType.FOOT;
-                  world.setBlockState(pos.add(i1, i, currentPos), Blocks.BED.getDefaultState().withProperty(BlockBed.PART, side).withProperty(BlockBed.FACING, EnumFacing.SOUTH));
+               } else if (WastelandConfig.worldgen.shouldSpawnBunkerBed && count == 78) {
+                  BlockPos bedPos = pos.add(i1, i, currentPos + 1);
+                  EnumFacing facing = EnumFacing.SOUTH;
+                  BlockPos footPos = bedPos.offset(facing.getOpposite());
+                  world.setBlockState(bedPos, Blocks.BED.getDefaultState().withProperty(BlockBed.PART, EnumPartType.HEAD).withProperty(BlockBed.FACING, facing));
+                  world.setBlockState(footPos, Blocks.BED.getDefaultState().withProperty(BlockBed.PART, EnumPartType.FOOT).withProperty(BlockBed.FACING, facing));
                }
 
                ++count;
