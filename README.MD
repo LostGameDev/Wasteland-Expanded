@@ -8,7 +8,6 @@ Downloads for the mod can be found:
 * [Releases page](https://github.com/LostGameDev/Wasteland-Expanded/releases)
 
 # TODO
-* Fix shouldSpawnOres option
 * Fix bunker bed not always placed properly
 * Fix city ruins not spawning
 
