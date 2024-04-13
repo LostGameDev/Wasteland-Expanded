@@ -19,7 +19,6 @@ import java.util.Random;
 import net.minecraft.block.BlockBed;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockTrapDoor;
-import net.minecraft.block.BlockPressurePlate;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.BlockStone;
