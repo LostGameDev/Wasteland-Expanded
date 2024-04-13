@@ -395,6 +395,6 @@ public class WorldGenRuinedRuins extends WorldGenerator {
 
     private IBlockState getRandomState(Random random) {
         IBlockState block = Blocks.STONEBRICK.getDefaultState();
-        return random.nextInt(5) == 0 ? block.withProperty(BlockStoneBrick.VARIANT, EnumType.CRACKED) : block;
+        return random.nextInt(5) == 0 ? block.withProperty(BlockStoneBrick.VARIANT, EnumType.CRACKED) : random.nextInt(10) == 0 ? block.withProperty(BlockStoneBrick.VARIANT, EnumType.MOSSY) : block;
     }
 }
