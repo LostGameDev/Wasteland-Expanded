@@ -8,7 +8,9 @@ Downloads for the mod can be found:
 * [Releases page](https://github.com/LostGameDev/Wasteland-Expanded/releases)
 
 # TODO
+* Add volcanic wastelands biome
 * Add radioactive wastelands biome
+* Add bio-dome (Replacment for cities?)
 
 # License
 [LICENSE](LICENSE.MD)
