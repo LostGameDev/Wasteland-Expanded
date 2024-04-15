@@ -1,7 +1,9 @@
 package com.legacy.wasteland.world.biome;
 
+import com.legacy.wasteland.config.WastelandConfig;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.monster.EntityHusk;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
@@ -17,6 +19,9 @@ public class BiomeGenDesert extends BiomeGenWastelandBase {
         super(properties);
         this.topBlock = Blocks.SAND.getDefaultState();
         this.fillerBlock = Blocks.SANDSTONE.getDefaultState();
+        if (WastelandConfig.worldgen.shouldSpawnDayZombies) {
+            this.spawnableCreatureList.add(new SpawnListEntry(EntityHusk.class, 100, 4, 5));
+        }
     }
 
     public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {

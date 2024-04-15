@@ -88,6 +88,9 @@ public class WastelandConfig {
         @Config.Comment("Should the Wasteland Forest biome be enabled?")
         public boolean wastelandForestEnabled = true;
 
+        @Config.Comment("Should the Volcanic Wasteland biome be enabled?")
+        public boolean volcanicWastelandEnabled = true;
+
         @Config.Comment("Should the Wasteland City biome be enabled?")
         public boolean wastelandCityEnabled = true;
 

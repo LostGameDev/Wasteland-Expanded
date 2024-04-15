@@ -3,14 +3,8 @@ package com.legacy.wasteland.world.biome.decorations;
 import com.legacy.wasteland.Wasteland;
 import com.legacy.wasteland.WastelandEventHandler;
 import com.legacy.wasteland.config.WastelandConfig;
-import com.legacy.wasteland.world.biome.BiomeGenApocalypse;
-import com.legacy.wasteland.world.biome.BiomeGenDesert;
-import com.legacy.wasteland.world.biome.BiomeGenForest;
-import com.legacy.wasteland.world.biome.BiomeGenMountains;
-import com.legacy.wasteland.world.biome.decorations.gen.WorldGenOasis;
-import com.legacy.wasteland.world.biome.decorations.gen.WorldGenRandomFire;
-import com.legacy.wasteland.world.biome.decorations.gen.WorldGenRandomRubble;
-import com.legacy.wasteland.world.biome.decorations.gen.WorldGenWastelandBigTree;
+import com.legacy.wasteland.world.biome.*;
+import com.legacy.wasteland.world.biome.decorations.gen.*;
 import com.legacy.wasteland.world.biome.decorations.gen.ruins.WorldGenCivilizationRuins;
 import com.legacy.wasteland.world.biome.decorations.gen.ruins.WorldGenRuinedRuins;
 import com.legacy.wasteland.world.biome.decorations.gen.ruins.WorldGenSurvivalTent;
@@ -34,10 +28,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.ChunkGeneratorSettings;
 import net.minecraft.world.gen.ChunkGeneratorSettings.Factory;
-import net.minecraft.world.gen.feature.WorldGenDeadBush;
-import net.minecraft.world.gen.feature.WorldGenMinable;
-import net.minecraft.world.gen.feature.WorldGenSand;
-import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraft.world.gen.feature.*;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType;
 
@@ -56,6 +47,7 @@ public class BiomeDecoratorWasteland extends BiomeDecorator {
    public WorldGenerator tent = new WorldGenSurvivalTent();
    public WorldGenerator temple = new WorldGenRuinedRuins();
    public WorldGenerator house = new WorldGenCivilizationRuins();
+   public WorldGenerator lavaLake = new WorldGenLavaLakes();
     /** The dirt generator. */
     public WorldGenerator dirtGen;
     public WorldGenerator gravelOreGen;
@@ -88,6 +80,7 @@ public class BiomeDecoratorWasteland extends BiomeDecorator {
          this.deadBushPerChunk = 5;
          this.chunkProviderSettings = Factory.jsonToFactory(worldIn.getWorldInfo().getGeneratorOptions()).build();
          this.dirtGen = new WorldGenMinable(Blocks.DIRT.getDefaultState(), this.chunkProviderSettings.dirtSize);
+         this.gravelOreGen = new WorldGenMinable(Blocks.GRAVEL.getDefaultState(), this.chunkProviderSettings.gravelSize);
          this.graniteGen = new WorldGenMinable(Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, EnumType.GRANITE), this.chunkProviderSettings.graniteSize);
          this.dioriteGen = new WorldGenMinable(Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, EnumType.DIORITE), this.chunkProviderSettings.dioriteSize);
          this.andesiteGen = new WorldGenMinable(Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, EnumType.ANDESITE), this.chunkProviderSettings.andesiteSize);
@@ -114,6 +107,8 @@ public class BiomeDecoratorWasteland extends BiomeDecorator {
          this.decorateForest(world, random);
       } else if(biomeGenBaseIn instanceof BiomeGenDesert) {
          this.decorateDesert(world, random);
+      } else if(biomeGenBaseIn instanceof BiomeGenVolcanic) {
+         this.decorateVolcanic(world, random);
       }
 
       if(TerrainGen.decorate(world, random, this.position, EventType.DEAD_BUSH)) {
@@ -221,6 +216,14 @@ public class BiomeDecoratorWasteland extends BiomeDecorator {
       if(random.nextInt(WastelandConfig.worldgen.wastelandRuinRarirty) == 0) {
          this.house.generate(world, random, world.getHeight(this.position.add(random.nextInt(16), 0, random.nextInt(16))));
       }
+
+   }
+
+   private void decorateVolcanic(World world, Random random) {
+      for(int size = 0; size < this.firePerChunk; ++size) {
+         this.randomFireGen.generate(world, random, world.getHeight(this.position.add(random.nextInt(16) + 8, 0, random.nextInt(16) + 8)));
+      }
+      this.lavaLake.generate(world, random, world.getHeight(this.position.add(random.nextInt(16), 0, random.nextInt(16))));
 
    }
 

@@ -27,6 +27,7 @@ public class WastelandGenLayer extends GenLayer {
         for (i = 0; i < 10; ++i) {
             this.biomes.add(new BiomeEntry(WastelandWorld.apocalypse_forest, 10));
             this.biomes.add(new BiomeEntry(WastelandWorld.apocalypse_mountains, 10));
+            this.biomes.add(new BiomeEntry(WastelandWorld.apocalypse_volcanic, 10));
         }
 
         for (i = 0; i < 40; ++i) {

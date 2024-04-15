@@ -16,6 +16,7 @@ public class WastelandWorld {
     public static Biome apocalypse_forest;
     public static Biome apocalypse_city;
     public static Biome apocalypse_desert;
+    public static Biome apocalypse_volcanic;
 
     public static void init() {
         apocalypse = register("Wasteland", new BiomeGenApocalypse(new Biome.BiomeProperties("Wasteland").setTemperature(0.5F).setBaseHeight(0.1F).setHeightVariation(0.05F).setWaterColor(14728553).setRainfall(0.5F)));
@@ -28,7 +29,10 @@ public class WastelandWorld {
         if (WastelandConfig.biomes.wastelandCityEnabled) {
             apocalypse_city = register("Wasteland City", new BiomeGenCity(new Biome.BiomeProperties("Wasteland City").setTemperature(0.5F).setBaseHeight(0.09F).setHeightVariation(0.05F).setWaterColor(9410739).setRainfall(0.5F)));
         }
-        apocalypse_desert = register("Wasteland Desert", new BiomeGenDesert(new Biome.BiomeProperties("Wasteland Desert").setTemperature(0.5F).setBaseHeight(0.09F).setHeightVariation(0.05F).setWaterColor(9410739).setRainDisabled()));
+        if (WastelandConfig.biomes.volcanicWastelandEnabled) {
+            apocalypse_volcanic = register("Volcanic Wasteland", new BiomeGenVolcanic(new Biome.BiomeProperties("Volcanic Wasteland").setTemperature(1F).setBaseHeight(0.09F).setHeightVariation(0.05F).setWaterColor(9410739).setRainfall(0.5F)));
+        }
+        apocalypse_desert = register("Wasteland Desert", new BiomeGenDesert(new Biome.BiomeProperties("Wasteland Desert").setTemperature(1F).setBaseHeight(0.09F).setHeightVariation(0.05F).setWaterColor(9410739).setRainDisabled()));
         worldtype_wasteland = new WorldTypeWasteland();
     }
 
