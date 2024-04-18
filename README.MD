@@ -4,7 +4,7 @@ The wasteland mod with extra content and bug fixes
 # Downloads
 Downloads for the mod can be found: 
 * [Curseforge](https://www.curseforge.com/minecraft/mc-mods/wasteland-expanded)
-* Modrinth: Soon(tm)
+* [Modrinth](https://modrinth.com/mod/wasteland-expanded)
 * [Releases page](https://github.com/LostGameDev/Wasteland-Expanded/releases)
 
 # TODO
