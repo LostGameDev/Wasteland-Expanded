@@ -239,14 +239,12 @@ public class BiomeDecoratorWasteland extends BiomeDecorator {
 
          for (BlockPos pos : biodomePositions) {
             if (newPos.distanceSq(pos) < 500 * 500) {
-               System.out.println("Biodome too close!");
                canSpawn = false;
                break;
             }
             for (int yOffset = -10; yOffset <= 10; yOffset++) {
                BlockPos checkPos = newPos.add(0, yOffset, 0);
                if (checkPos.distanceSq(pos) < 500 * 500) {
-                  System.out.println("Biodome too close vertically!");
                   canSpawn = false;
                   break;
                }
@@ -257,7 +255,6 @@ public class BiomeDecoratorWasteland extends BiomeDecorator {
          }
 
          if (canSpawn) {
-            System.out.println("Biodome Spawned! At coords: " + newPos.getX() + ", " + newPos.getY() + ", " + newPos.getZ());
             this.biodome.generate(world, random, newPos);
             biodomePositions.add(newPos);
          }
