@@ -5,10 +5,10 @@ import com.legacy.wasteland.WastelandEventHandler;
 import com.legacy.wasteland.config.WastelandConfig;
 import com.legacy.wasteland.world.biome.*;
 import com.legacy.wasteland.world.biome.decorations.gen.*;
-import com.legacy.wasteland.world.biome.decorations.gen.ruins.WorldGenCivilizationRuins;
-import com.legacy.wasteland.world.biome.decorations.gen.ruins.WorldGenRuinedRuins;
-import com.legacy.wasteland.world.biome.decorations.gen.ruins.WorldGenSurvivalTent;
-import com.legacy.wasteland.world.biome.decorations.gen.ruins.WorldGenTreeHouse;
+import com.legacy.wasteland.world.biome.decorations.gen.ruins.*;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import net.minecraft.block.BlockBed;
 import net.minecraft.block.BlockDoor;
@@ -48,7 +48,9 @@ public class BiomeDecoratorWasteland extends BiomeDecorator {
    public WorldGenerator temple = new WorldGenRuinedRuins();
    public WorldGenerator house = new WorldGenCivilizationRuins();
    public WorldGenerator lavaLake = new WorldGenLavaLakes();
-    /** The dirt generator. */
+   public WorldGenerator biodome = new WorldGenBiodome();
+   private List<BlockPos> biodomePositions = new ArrayList<>();
+   /** The dirt generator. */
     public WorldGenerator dirtGen;
     public WorldGenerator gravelOreGen;
     public WorldGenerator graniteGen;
@@ -109,6 +111,8 @@ public class BiomeDecoratorWasteland extends BiomeDecorator {
          this.decorateDesert(world, random);
       } else if(biomeGenBaseIn instanceof BiomeGenVolcanic) {
          this.decorateVolcanic(world, random);
+      } else if(biomeGenBaseIn instanceof BiomeGenCity) {
+         this.decorateCity(world, random);
       }
 
       if(TerrainGen.decorate(world, random, this.position, EventType.DEAD_BUSH)) {
@@ -225,6 +229,39 @@ public class BiomeDecoratorWasteland extends BiomeDecorator {
       }
       this.lavaLake.generate(world, random, world.getHeight(this.position.add(random.nextInt(16), 0, random.nextInt(16))));
 
+   }
+
+   private void decorateCity(World world, Random random) {
+      if (random.nextInt(1000000) == 0) {
+         System.out.println("Decorating City");
+         BlockPos newPos = world.getHeight(this.position.add(random.nextInt(16), 0, random.nextInt(16)));
+         boolean canSpawn = true;
+
+         for (BlockPos pos : biodomePositions) {
+            if (newPos.distanceSq(pos) < 500 * 500) {
+               System.out.println("Biodome too close!");
+               canSpawn = false;
+               break;
+            }
+            for (int yOffset = -10; yOffset <= 10; yOffset++) {
+               BlockPos checkPos = newPos.add(0, yOffset, 0);
+               if (checkPos.distanceSq(pos) < 500 * 500) {
+                  System.out.println("Biodome too close vertically!");
+                  canSpawn = false;
+                  break;
+               }
+            }
+            if (!canSpawn) {
+               break;
+            }
+         }
+
+         if (canSpawn) {
+            System.out.println("Biodome Spawned! At coords: " + newPos.getX() + ", " + newPos.getY() + ", " + newPos.getZ());
+            this.biodome.generate(world, random, newPos);
+            biodomePositions.add(newPos);
+         }
+      }
    }
 
    private void decorateMountains(World world, Random random) {
