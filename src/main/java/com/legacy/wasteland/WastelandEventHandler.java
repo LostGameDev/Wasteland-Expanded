@@ -4,6 +4,7 @@ import com.legacy.wasteland.config.WastelandConfig;
 import com.legacy.wasteland.world.WastelandWorld;
 import com.legacy.wasteland.world.biome.decorations.BiomeDecoratorWasteland;
 import com.legacy.wasteland.world.util.WastelandWorldData;
+import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
@@ -117,6 +118,36 @@ public class WastelandEventHandler {
             event.getEntity().extinguish();
         }
     }
+
+    /*
+    Stops skeletons from burning during daytime.
+    This could have been done better, not sure i need all these events, but hey it works!
+    */
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public void skeletonRenderOnFire(RenderLivingEvent event) {
+        if (event.getEntity() instanceof EntitySkeleton && event.getEntity().isBurning() && event.getEntity().world.getWorldType() == WastelandWorld.worldtype_wasteland && WastelandConfig.worldgen.shouldSpawnDaySkeletons) {
+            event.getEntity().extinguish();
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public void skeletonOnFire(LivingHurtEvent event) {
+        if (event.getEntity() instanceof EntitySkeleton && event.getSource() == DamageSource.ON_FIRE && event.getEntity().world.getWorldType() == WastelandWorld.worldtype_wasteland && WastelandConfig.worldgen.shouldSpawnDaySkeletons) {
+            event.getEntity().extinguish();
+            event.setCanceled(true);
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public void skeletonUpdateFire(LivingUpdateEvent event) {
+        if (event.getEntity() instanceof EntitySkeleton && event.getEntity().isBurning() && event.getEntity().world.getWorldType() == WastelandWorld.worldtype_wasteland && WastelandConfig.worldgen.shouldSpawnDaySkeletons) {
+            event.getEntity().extinguish();
+        }
+    }
+
 
     private boolean isNewPlayer(EntityPlayer player) {
         List loadedPlayers = this.worldFileCache.getPlayerNames();

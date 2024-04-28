@@ -3,6 +3,7 @@ package com.legacy.wasteland.world.biome;
 import com.legacy.wasteland.Wasteland;
 import com.legacy.wasteland.config.WastelandConfig;
 import com.legacy.wasteland.world.biome.decorations.BiomeDecoratorWasteland;
+import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
@@ -16,6 +17,9 @@ public class BiomeGenWastelandBase extends Biome {
         this.decorator = new BiomeDecoratorWasteland();
         if (WastelandConfig.worldgen.shouldSpawnDayZombies) {
             this.spawnableCreatureList.add(new SpawnListEntry(EntityZombie.class, 100, 4, 5));
+        }
+        if (WastelandConfig.worldgen.shouldSpawnDaySkeletons) {
+            this.spawnableCreatureList.add(new SpawnListEntry(EntitySkeleton.class, 50, 1, 2));
         }
         try {
             if (Loader.isModLoaded("cyberware") && WastelandConfig.worldgen.shouldSpawnCyberZombies && WastelandConfig.worldgen.shouldSpawnDayZombies) {

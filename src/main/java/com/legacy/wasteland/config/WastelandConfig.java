@@ -62,6 +62,9 @@ public class WastelandConfig {
     @Config.Comment("Allow zombies to spawn in daylight")
     public boolean shouldSpawnDayZombies = true;
 
+    @Config.Comment("Allow skeletons to spawn in daylight")
+    public boolean shouldSpawnDaySkeletons = true;
+
     @Config.Comment("Allow CyberZombies from the CyberWare mod to spawn, this is only in effect if the CyberWare mod is installed")
     public boolean shouldSpawnCyberZombies = true;    
     
